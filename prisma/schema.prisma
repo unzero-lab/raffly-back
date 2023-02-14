@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Raffle{
+  id                  String     @id @default(uuid())
+  title               String //preenchido pelo usuario
+  deleted             Boolean    @default(false)
+  deletedAt           DateTime?  @map("deleted_at") 
+  createdAt           DateTime   @map("created_at")  @default(now())
+  updateAt            DateTime   @map("update_at")   @default(now())
+  draw_date           DateTime? 
+  amount_number       Int // preenchido pelo usuario
+  fk_provider_user_id Int?    
+  winning_number      Int // preenchido pelo usuario
+  price_product       Int // preenchido pelo usuario
+  description         String // preenchido pelo usuario
+}
