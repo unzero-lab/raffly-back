@@ -10,10 +10,10 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "src",
-   "paths": {
-     "@/*": ["*"],
-     "@/tests/*": ["../tests/*"]
-   },
+    "paths": {
+      "@/*": ["*"],
+      "@/tests/*": ["../tests/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

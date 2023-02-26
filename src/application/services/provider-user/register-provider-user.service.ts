@@ -1,4 +1,4 @@
-import { CreateProviderUserRepository } from '@/application/contracts/repositories'
+import { CreateProviderUserRepository } from '@/application/contracts/repositories/provider-user'
 import {
   RegisterProviderUserUseCase,
   RegisterProviderUserUseCaseParams,
@@ -13,7 +13,7 @@ export class RegisterProviderUserService implements RegisterProviderUserUseCase 
   ) {}
 
   public async execute(params: RegisterProviderUserUseCaseParams): Promise<RegisterProviderUserUseCaseResult> {
-    const createdProviderUser = await this.providerUserRepository.create(params)
+    const createdProviderUser = await this.providerUserRepository.insertProviderUser(params)
 
     if (!createdProviderUser) {
       return new Error('Error creating provider user')

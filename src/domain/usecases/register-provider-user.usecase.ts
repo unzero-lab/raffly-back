@@ -1,4 +1,4 @@
-import { ProviderUser } from '@/domain/entities'
+import { ProviderUserEntity } from '@/domain/entities'
 import { Gender } from '@/domain/enums'
 
 export interface RegisterProviderUserUseCase {
@@ -21,4 +21,4 @@ export type RegisterProviderUserUseCaseParams = {
   }
 }
 
-export type RegisterProviderUserUseCaseResult = ProviderUser | Error
+export type RegisterProviderUserUseCaseResult = ProviderUserEntity | Error

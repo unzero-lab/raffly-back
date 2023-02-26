@@ -1,7 +1,5 @@
-import { Entity } from '@/domain/entities/Entity'
-
-type ProviderUserProps = {
-  id: string
+export type ProviderUserEntity = {
+  id?: string
   name: string
   email: string
   password: string
@@ -16,5 +14,3 @@ type ProviderUserProps = {
     zipCode: string
   }
 }
-
-export type ProviderUser = Entity<ProviderUserProps>
