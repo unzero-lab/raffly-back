@@ -3,7 +3,7 @@ import {
   CreateProviderUserRepositoryParams,
   CreateProviderUserRepositoryResult
 } from '@/application/contracts/repositories/provider-user'
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common/decorators'
 import { PrismaService } from './config/prisma.config'
 
 @Injectable()
