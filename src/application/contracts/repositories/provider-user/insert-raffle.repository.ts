@@ -1,5 +1,4 @@
 import { RaffleEntity } from '@/domain/entities'
-
 import { CreateRaffleUseCaseParams } from '@/domain/usecases'
 
 export interface CreateRaffleRepository {

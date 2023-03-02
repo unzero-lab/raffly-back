@@ -12,9 +12,10 @@ export type CreateRaffleUseCaseParams = {
   updateAt?: Date
   drawDate?: Date
   amountNumber: number
-  ProviderUserId?: number
+  providerUserId: string
   winningNumber: number
   priceProduct: number
+  priceNumber: number
   description: string
 }
 

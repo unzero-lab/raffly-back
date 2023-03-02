@@ -6,9 +6,10 @@ CREATE TABLE "raflles" (
     "deleted_at" DATETIME,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "update_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "draw_date " DATETIME,
+    "draw_date" DATETIME,
     "amount_number" INTEGER NOT NULL,
-    "provider_user_id" INTEGER,
+    "price_number" INTEGER NOT NULL,
+    "provider_user_id" TEXT NOT NULL,
     "winning_number" INTEGER NOT NULL,
     "price_product" INTEGER NOT NULL,
     "description" TEXT NOT NULL

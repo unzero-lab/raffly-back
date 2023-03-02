@@ -7,8 +7,9 @@ export type RaffleEntity = {
   updateAt?: Date
   drawDate?: Date
   amountNumber: number //user
-  providerUserId?: number
+  providerUserId: string
   winningNumber: number //user
   priceProduct: number //user
+  priceNumber: number //user
   description: string //user
 }
