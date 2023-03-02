@@ -56,3 +56,13 @@ model TypeData {
 
   @@map("type_data")
 }
+
+
+model SubscriberUsers {
+  id String @id @default(cuid())
+  name String
+  email String
+  phone String
+
+  @@map("subscriber_users")
+}
