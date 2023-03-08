@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ProviderUsers {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  name        String
+  password    String
+  gender      String?
+  dateOfBirth DateTime? @map("date_of_birth")
+  phone       String?   @unique
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  token       String?   @unique
+
+  @@map("provider_users")
+}
+
+model ProviderUsersData {
+  id              String    @id @default(cuid())
+  providerUsersId String    @map("provider_users_id")
+  typeLabelId     String    @map("type_label_id")
+  value           String
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @default(now()) @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  @@map("provider_users_data")
+}
+
+model TypeLabel {
+  id         String    @id @default(cuid())
+  name       String
+  typeDataId String?   @map("type_data_id")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at")
+
+  @@map("type_label")
+}
+
+model TypeData {
+  id        String    @id @default(cuid())
+  name      String
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("type_data")
+}
