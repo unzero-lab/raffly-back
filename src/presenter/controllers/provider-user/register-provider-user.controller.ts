@@ -1,5 +1,6 @@
 import { RegisterProviderUserUseCase } from '@/domain/usecases'
-import { Body, Controller, Inject, Post, Res } from '@nestjs/common'
+import { RegisterProviderUserDto } from '@/presenter/dtos'
+import { Body, Controller, Inject, Post, Res, UsePipes, ValidationPipe } from '@nestjs/common'
 
 @Controller('auth/register')
 export class CreateProviderUserController {
@@ -8,12 +9,9 @@ export class CreateProviderUserController {
   ) {}
 
   @Post()
-  async handle(
-    @Body('name') name: string,
-    @Body('email') email: string,
-    @Body('password') password: string,
-    @Res() res: any
-  ): Promise<any> {
+  @UsePipes(new ValidationPipe())
+  async handle(@Body() body: RegisterProviderUserDto, @Res() res: any): Promise<any> {
+    const { name, email, password } = body
     const providerUser = await this.registerProviderUserService.execute({
       name,
       email,
