@@ -5,6 +5,9 @@ import {
   FindProviderUserByEmailRepository,
   FindProviderUserByEmailRepositoryParams,
   FindProviderUserByEmailRepositoryResult,
+  FindProviderUserByIdRepository,
+  FindProviderUserByIdRepositoryParams,
+  FindProviderUserByIdRepositoryResult,
   SaveTokenProviderUserRepository,
   SaveTokenProviderUserRepositoryParams,
   SaveTokenProviderUserRepositoryResult
@@ -14,7 +17,11 @@ import { PrismaService } from './config/prisma.config'
 
 @Injectable()
 export class ProviderUserDatabase
-  implements CreateProviderUserRepository, FindProviderUserByEmailRepository, SaveTokenProviderUserRepository
+  implements
+    CreateProviderUserRepository,
+    FindProviderUserByEmailRepository,
+    FindProviderUserByIdRepository,
+    SaveTokenProviderUserRepository
 {
   constructor(private prisma: PrismaService) {}
 
@@ -45,6 +52,27 @@ export class ProviderUserDatabase
     const providerUser = await this.prisma.providerUsers.findUnique({
       where: {
         email
+      }
+    })
+
+    if (!providerUser) {
+      return null
+    }
+
+    return {
+      id: providerUser.id,
+      name: providerUser.name,
+      email: providerUser.email,
+      password: providerUser.password
+    }
+  }
+
+  async findProviderUserById({
+    providerUserId
+  }: FindProviderUserByIdRepositoryParams): Promise<FindProviderUserByIdRepositoryResult> {
+    const providerUser = await this.prisma.providerUsers.findUnique({
+      where: {
+        id: providerUserId
       }
     })
 
