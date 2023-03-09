@@ -1,4 +1,4 @@
-import { CreateRaffleUseCase } from '@/domain/usecases'
+import { CreateRaffleUseCase } from '@/domain/usecases/raffle'
 import { Body, Controller, Inject, Post, Res } from '@nestjs/common'
 @Controller('raffles')
 export class CreateRaffleController {

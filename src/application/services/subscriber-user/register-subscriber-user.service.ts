@@ -1,9 +1,10 @@
-import { CreateSubscriberUserRepository } from '@/application/contracts/repositories/provider-user'
+import { CreateSubscriberUserRepository } from '@/application/contracts/repositories/subscriber-user'
+import { CreateSubscriberUserError } from '@/domain/errors'
 import {
   RegisterSubscriberUserUseCase,
   RegisterSubscriberUserUseCaseParams,
   RegisterSubscriberUserUseCaseResult
-} from '@/domain/usecases'
+} from '@/domain/usecases/subscriber-user'
 
 import { Inject, Injectable } from '@nestjs/common/decorators'
 
@@ -17,7 +18,7 @@ export class RegisterSubscriberUserService implements RegisterSubscriberUserUseC
     const createdSubscriberUser = await this.subscriberUserRepository.insertSubscriberUser(params)
 
     if (!createdSubscriberUser) {
-      return new Error('Error creating subscriber user')
+      return new CreateSubscriberUserError()
     }
 
     return createdSubscriberUser

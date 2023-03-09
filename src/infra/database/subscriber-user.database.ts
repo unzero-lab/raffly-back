@@ -2,7 +2,7 @@ import {
   CreateSubscriberUserRepository,
   CreateSubscriberUserRepositoryParams,
   CreateSubscriberUserRepositoryResult
-} from '@/application/contracts/repositories/provider-user'
+} from '@/application/contracts/repositories/subscriber-user'
 
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from './config/prisma.config'

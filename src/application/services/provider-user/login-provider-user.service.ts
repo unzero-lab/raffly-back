@@ -3,7 +3,7 @@ import {
   LoginProviderUserUseCase,
   LoginProviderUserUseCaseParams,
   LoginProviderUserUseCaseResult
-} from '@/domain/usecases'
+} from '@/domain/usecases/provider-user'
 import {
   SaveTokenProviderUserRepository,
   FindProviderUserByEmailRepository

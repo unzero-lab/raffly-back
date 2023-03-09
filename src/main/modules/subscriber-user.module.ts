@@ -1,16 +1,12 @@
-import { RegisterSubscriberUserService } from '@/application/services/provider-user'
-
+import { RegisterSubscriberUserService } from '@/application/services/subscriber-user'
 import { Module } from '@nestjs/common'
-
 import { SubscriberUserDatabase } from '@/infra/database/subscriber-user.database'
-
 import { PrismaService } from '@/infra/database/config/prisma.config'
-
-import { CreateSubscriberUserController } from '@/presenter/controllers/provider-user'
+import { RegisterSubscriberUserController } from '@/presenter/controllers/subscriber-user'
 
 @Module({
   imports: [],
-  controllers: [CreateSubscriberUserController],
+  controllers: [RegisterSubscriberUserController],
   providers: [
     {
       provide: 'CreateSubscriberUserRepository',

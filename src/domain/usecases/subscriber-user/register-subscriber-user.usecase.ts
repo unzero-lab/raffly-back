@@ -1,4 +1,4 @@
-import { SubscriberUserEntity } from '../entities'
+import { SubscriberUserEntity } from '@/domain/entities'
 
 export interface RegisterSubscriberUserUseCase {
   execute(params: RegisterSubscriberUserUseCaseParams): Promise<RegisterSubscriberUserUseCaseResult>

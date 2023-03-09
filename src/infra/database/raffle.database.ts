@@ -2,7 +2,7 @@ import {
   CreateRaffleRepository,
   CreateRaffleRepositoryParams,
   CreateRaffleRepositoryResult
-} from '@/application/contracts/repositories/provider-user'
+} from '@/application/contracts/repositories/raffle'
 import { Injectable } from '@nestjs/common/decorators'
 import { PrismaService } from './config/prisma.config'
 
@@ -11,7 +11,7 @@ export class RaffleDatabase implements CreateRaffleRepository {
   constructor(private prisma: PrismaService) {}
 
   async insertRaffle(data: CreateRaffleRepositoryParams): Promise<CreateRaffleRepositoryResult> {
-    const createdRaffle = await this.prisma.raffle.create({
+    const createdRaffle = await this.prisma.raffles.create({
       data: {
         providerUserId: data.providerUserId,
         title: data.title,

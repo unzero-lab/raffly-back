@@ -1,5 +1,5 @@
 import { ProviderUserEntity } from '@/domain/entities'
-import { RegisterProviderUserUseCaseParams } from '@/domain/usecases'
+import { RegisterProviderUserUseCaseParams } from '@/domain/usecases/provider-user'
 
 export interface CreateProviderUserRepository {
   insertProviderUser: (data: CreateProviderUserRepositoryParams) => Promise<CreateProviderUserRepositoryResult>
