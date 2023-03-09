@@ -1,6 +1,6 @@
-import { RegisterProviderUserUseCaseParams } from '@/domain/usecases'
+import { RegisterProviderUserUseCaseParams } from '@/domain/usecases/provider-user'
+import { RegisterProviderUserService } from '@/application/services/provider-user'
 import { Test, TestingModule } from '@nestjs/testing'
-import { RegisterProviderUserService } from './register-provider-user.service'
 
 describe('services/RegisterProviderUserService', () => {
   let service: RegisterProviderUserService

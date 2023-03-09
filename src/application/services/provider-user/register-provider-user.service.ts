@@ -1,9 +1,10 @@
 import { CreateProviderUserRepository } from '@/application/contracts/repositories/provider-user'
+import { CreateProviderUserError } from '@/domain/errors'
 import {
   RegisterProviderUserUseCase,
   RegisterProviderUserUseCaseParams,
   RegisterProviderUserUseCaseResult
-} from '@/domain/usecases'
+} from '@/domain/usecases/provider-user'
 import { Inject, Injectable } from '@nestjs/common'
 
 @Injectable()
@@ -16,7 +17,7 @@ export class RegisterProviderUserService implements RegisterProviderUserUseCase 
     const createdProviderUser = await this.providerUserRepository.insertProviderUser(params)
 
     if (!createdProviderUser) {
-      return new Error('Error creating provider user')
+      return new CreateProviderUserError()
     }
 
     return createdProviderUser

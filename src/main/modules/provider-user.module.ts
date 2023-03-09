@@ -1,42 +1,31 @@
-import { LoginProviderUserService, RegisterProviderUserService } from '@/application/services/provider-user'
+import {
+  LoadProviderUserService,
+  LoginProviderUserService,
+  RegisterProviderUserService
+} from '@/application/services/provider-user'
 import { Module } from '@nestjs/common'
 import { ProviderUserDatabase } from '@/infra/database'
 import { PrismaService } from '@/infra/database/config/prisma.config'
-import { CreateProviderUserController, LoginProviderUserController } from '@/presenter/controllers/provider-user'
+import {
+  CreateProviderUserController,
+  LoadProviderUserController,
+  LoginProviderUserController
+} from '@/presenter/controllers/provider-user'
 import { AuthService } from '@/infra/external-services/auth'
 
 @Module({
   imports: [],
-  controllers: [CreateProviderUserController, LoginProviderUserController],
+  controllers: [CreateProviderUserController, LoginProviderUserController, LoadProviderUserController],
   providers: [
-    {
-      provide: 'CreateProviderUserRepository',
-      useClass: ProviderUserDatabase
-    },
-    {
-      provide: 'RegisterProviderUserUseCase',
-      useClass: RegisterProviderUserService
-    },
-    {
-      provide: 'FindProviderUserByEmailRepository',
-      useClass: ProviderUserDatabase
-    },
-    {
-      provide: 'SaveTokenProviderUserRepository',
-      useClass: ProviderUserDatabase
-    },
-    {
-      provide: 'GenerateTokenTask',
-      useClass: AuthService
-    },
-    {
-      provide: 'ComparePasswordsTask',
-      useClass: AuthService
-    },
-    {
-      provide: 'LoginProviderUserUseCase',
-      useClass: LoginProviderUserService
-    },
+    { provide: 'CreateProviderUserRepository', useClass: ProviderUserDatabase },
+    { provide: 'ComparePasswordsTask', useClass: AuthService },
+    { provide: 'FindProviderUserByEmailRepository', useClass: ProviderUserDatabase },
+    { provide: 'FindProviderUserByIdRepository', useClass: ProviderUserDatabase },
+    { provide: 'GenerateTokenTask', useClass: AuthService },
+    { provide: 'LoadProviderUserUseCase', useClass: LoadProviderUserService },
+    { provide: 'LoginProviderUserUseCase', useClass: LoginProviderUserService },
+    { provide: 'RegisterProviderUserUseCase', useClass: RegisterProviderUserService },
+    { provide: 'SaveTokenProviderUserRepository', useClass: ProviderUserDatabase },
     PrismaService
   ]
 })

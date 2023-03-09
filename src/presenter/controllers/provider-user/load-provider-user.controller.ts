@@ -1,4 +1,4 @@
-import { LoadProviderUserUseCase } from '@/domain/usecases/load-provider-user.usecase'
+import { LoadProviderUserUseCase } from '@/domain/usecases/provider-user/load-provider-user.usecase'
 import { Controller, Inject, Get, Res, Param } from '@nestjs/common'
 
 @Controller('provider')
@@ -10,16 +10,16 @@ export class LoadProviderUserController {
 
   @Get(':id')
   async handle(@Param('id') id: string, @Res() res: any): Promise<any> {
-    const providerUser = await this.loadProviderUserService.execute({ id })
+    const createdProviderUser = await this.loadProviderUserService.execute({ id })
 
-    if (providerUser instanceof Error) {
-      const statusCode = providerUser.name === 'NotFoundError' ? 404 : 500
+    if (createdProviderUser instanceof Error) {
+      const statusCode = createdProviderUser.name === 'NotFoundError' ? 404 : 500
 
       return res.status(statusCode).json({
-        message: providerUser.message
+        message: createdProviderUser.message
       })
     }
 
-    return res.status(200).json(providerUser)
+    return res.status(200).json(createdProviderUser)
   }
 }

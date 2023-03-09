@@ -4,7 +4,7 @@ import {
   LoadProviderUserUseCase,
   LoadProviderUserUseCaseParams,
   LoadProviderUserUseCaseResult
-} from '@/domain/usecases'
+} from '@/domain/usecases/provider-user'
 import { Inject, Injectable } from '@nestjs/common'
 
 @Injectable()

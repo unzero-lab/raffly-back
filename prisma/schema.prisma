@@ -58,7 +58,7 @@ model TypeData {
   @@map("type_data")
 }
 
-model Raffle {
+model Raffles {
   id             String    @id @default(uuid())
   title          String
   deleted        Boolean   @default(false)
