@@ -1,5 +1,5 @@
-import { RegisterProviderUserUseCase } from '@/domain/usecases'
-import { RegisterProviderUserDto } from '@/presenter/dtos'
+import { RegisterProviderUserUseCase } from '@/domain/usecases/provider-user'
+import { RegisterProviderUserDto } from '@/presenter/dtos/provider-user'
 import { Body, Controller, Inject, Post, Res, UsePipes, ValidationPipe } from '@nestjs/common'
 
 @Controller('auth/register')
