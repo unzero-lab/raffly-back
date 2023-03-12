@@ -1,7 +1,7 @@
 import { LoadProviderUserUseCase } from '@/domain/usecases/provider-user/load-provider-user.usecase'
 import { Controller, Inject, Get, Res, Param } from '@nestjs/common'
 
-@Controller('provider')
+@Controller('provider-users')
 export class LoadProviderUserController {
   constructor(
     @Inject('LoadProviderUserUseCase')
