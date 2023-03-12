@@ -1,8 +1,9 @@
 import {
   CreateProviderUserRepository,
-  FindProviderUserByEmailRepository
+  FindProviderUserByEmailRepository,
+  SaveTokenProviderUserRepository
 } from '@/application/contracts/repositories/provider-user'
-import { CriptographPasswordTask } from '@/application/contracts/tasks/auth'
+import { CriptographPasswordTask, GenerateTokenTask } from '@/application/contracts/tasks/auth'
 import { AlreadyExistsError, CreateProviderUserError } from '@/domain/errors'
 import {
   RegisterProviderUserUseCase,
@@ -16,8 +17,12 @@ export class RegisterProviderUserService implements RegisterProviderUserUseCase 
   constructor(
     @Inject('CreateProviderUserRepository')
     @Inject('FindProviderUserByEmailRepository')
-    private readonly providerUserRepository: CreateProviderUserRepository & FindProviderUserByEmailRepository,
-    @Inject('CriptographPasswordTask') private readonly criptographTask: CriptographPasswordTask
+    @Inject('SaveTokenProviderUserRepository')
+    private readonly providerUserRepository: CreateProviderUserRepository &
+      FindProviderUserByEmailRepository &
+      SaveTokenProviderUserRepository,
+    @Inject('CriptographPasswordTask') private readonly criptographTask: CriptographPasswordTask,
+    @Inject('GenerateTokenTask') private readonly generateTokenTask: GenerateTokenTask
   ) {}
 
   public async execute(params: RegisterProviderUserUseCaseParams): Promise<RegisterProviderUserUseCaseResult> {
@@ -42,9 +47,20 @@ export class RegisterProviderUserService implements RegisterProviderUserUseCase 
       password: criptographPassword
     })
 
-    if (!createdProviderUser) {
+    if (createdProviderUser instanceof Error) {
       return new CreateProviderUserError()
     }
+
+    const token = await this.generateTokenTask.generateToken({
+      id: createdProviderUser.id,
+      name: createdProviderUser.name,
+      email: createdProviderUser.email
+    })
+
+    await this.providerUserRepository.saveToken({
+      id: createdProviderUser.id,
+      token
+    })
 
     return createdProviderUser
   }
