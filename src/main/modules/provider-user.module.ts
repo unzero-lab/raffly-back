@@ -17,8 +17,9 @@ import { AuthService } from '@/infra/external-services/auth'
   imports: [],
   controllers: [CreateProviderUserController, LoginProviderUserController, LoadProviderUserController],
   providers: [
-    { provide: 'CreateProviderUserRepository', useClass: ProviderUserDatabase },
     { provide: 'ComparePasswordsTask', useClass: AuthService },
+    { provide: 'CreateProviderUserRepository', useClass: ProviderUserDatabase },
+    { provide: 'CriptographPasswordTask', useClass: AuthService },
     { provide: 'FindProviderUserByEmailRepository', useClass: ProviderUserDatabase },
     { provide: 'FindProviderUserByIdRepository', useClass: ProviderUserDatabase },
     { provide: 'GenerateTokenTask', useClass: AuthService },
