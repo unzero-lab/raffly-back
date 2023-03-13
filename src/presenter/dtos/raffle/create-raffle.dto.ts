@@ -1,24 +1,38 @@
-import { IsNumber, IsString } from 'class-validator'
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Matches } from 'class-validator'
 
 export class CreateRaffleDto {
   @IsString()
-  providerUserId: string
+  @IsNotEmpty()
+  'providerUserId': string
 
   @IsString()
-  title: string
+  @IsNotEmpty()
+  'title': string
 
   @IsString()
-  description: string
+  @IsOptional()
+  'description': string
 
   @IsNumber()
-  amountNumber: number
+  @IsNotEmpty()
+  'amountNumber': number
 
   @IsNumber()
-  winningNumber: number
+  @IsOptional()
+  'winningNumber': number
 
   @IsNumber()
-  priceProduct: number
+  @IsOptional()
+  'priceProduct': number
 
   @IsNumber()
-  priceNumber: number
+  @IsNotEmpty()
+  'priceNumber': number
+
+  @IsString()
+  @IsNotEmpty()
+  @Matches(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/, {
+    message: "Date format must be 'YYYY-MM-DD HH:mm:ss'"
+  })
+  'drawDate': string
 }

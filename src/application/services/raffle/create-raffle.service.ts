@@ -8,12 +8,16 @@ export class CreateRaffleService implements CreateRaffleUseCase {
   constructor(@Inject('CreateRaffleRepository') private readonly RaffleRepository: CreateRaffleRepository) {}
 
   public async execute(params: CreateRaffleUseCaseParams): Promise<CreateRaffleUseCaseResult> {
-    const createdRaffle = this.RaffleRepository.insertRaffle(params)
+    try {
+      const createdRaffle = this.RaffleRepository.insertRaffle(params)
 
-    if (!createdRaffle) {
+      if (createdRaffle instanceof Error) {
+        return createdRaffle
+      }
+
+      return createdRaffle
+    } catch (error) {
       return new CreateRaffleError()
     }
-
-    return createdRaffle
   }
 }

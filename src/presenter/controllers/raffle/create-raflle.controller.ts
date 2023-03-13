@@ -11,7 +11,7 @@ export class CreateRaffleController {
     const raffle = await this.CreateRaffleService.execute(body)
 
     if (raffle instanceof Error) {
-      return res.status(400).json({ message: raffle.message })
+      return raffle.name === 'NotFoundError' ? res.status(404).json(raffle) : res.status(500).json(raffle)
     }
 
     return res.status(201).json(raffle)

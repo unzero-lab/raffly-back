@@ -5,18 +5,14 @@ export interface CreateRaffleUseCase {
 }
 
 export type CreateRaffleUseCaseParams = {
-  title?: string
-  deleted?: boolean
-  deletedAt?: Date
-  createdAt?: Date
-  updateAt?: Date
-  drawDate?: Date
-  amountNumber: number
   providerUserId: string
-  winningNumber: number
+  title: string
   priceProduct: number
+  amountNumber: number
   priceNumber: number
-  description: string
+  drawDate: string
+  description?: string
+  winningNumber?: number
 }
 
 export type CreateRaffleUseCaseResult = RaffleEntity | Error
