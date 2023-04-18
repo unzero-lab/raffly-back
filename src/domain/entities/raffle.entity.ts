@@ -1,10 +1,9 @@
 export type RaffleEntity = {
   id?: string
   title?: string
-  deleted?: boolean
   deletedAt?: Date
   createdAt?: Date
-  updateAt?: Date
+  updatedAt?: Date
   drawDate?: Date
   amountNumber: number
   providerUserId: string

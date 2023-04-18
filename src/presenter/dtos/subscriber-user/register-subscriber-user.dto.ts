@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, IsString } from 'class-validator'
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
+import { IsBrPhoneNumberOnlyDigits } from '@/presenter/dtos/customs-decorators'
 
 export class RegisterSubscriberUserDto {
   @IsNotEmpty()
@@ -10,6 +11,6 @@ export class RegisterSubscriberUserDto {
   email: string
 
   @IsNotEmpty()
-  @IsPhoneNumber('BR')
+  @IsBrPhoneNumberOnlyDigits()
   phone: string
 }

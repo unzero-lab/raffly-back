@@ -8,20 +8,10 @@ export class CreateRaffleController {
 
   @Post()
   async handle(@Body() body: CreateRaffleDto, @Res() res: any): Promise<any> {
-    const { providerUserId, title, amountNumber, winningNumber, priceProduct, priceNumber, description } = body
-
-    const raffle = await this.CreateRaffleService.execute({
-      providerUserId,
-      title,
-      amountNumber,
-      winningNumber,
-      priceProduct,
-      priceNumber,
-      description
-    })
+    const raffle = await this.CreateRaffleService.execute(body)
 
     if (raffle instanceof Error) {
-      return res.status(400).json({ message: raffle.message })
+      return raffle.name === 'NotFoundError' ? res.status(404).json(raffle) : res.status(500).json(raffle)
     }
 
     return res.status(201).json(raffle)

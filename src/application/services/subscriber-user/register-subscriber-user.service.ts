@@ -11,7 +11,7 @@ import { Inject, Injectable } from '@nestjs/common/decorators'
 @Injectable()
 export class RegisterSubscriberUserService implements RegisterSubscriberUserUseCase {
   constructor(
-    @Inject('CreateSubsciberUserRepository') private readonly subscriberUserRepository: CreateSubscriberUserRepository
+    @Inject('CreateSubscriberUserRepository') private readonly subscriberUserRepository: CreateSubscriberUserRepository
   ) {}
 
   public async execute(params: RegisterSubscriberUserUseCaseParams): Promise<RegisterSubscriberUserUseCaseResult> {

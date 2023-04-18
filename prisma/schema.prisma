@@ -21,6 +21,7 @@ model ProviderUsers {
   updatedAt   DateTime  @default(now()) @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")
   token       String?   @unique
+  Raffles     Raffles[]
 
   @@map("provider_users")
 }
@@ -60,18 +61,19 @@ model TypeData {
 
 model Raffles {
   id             String    @id @default(uuid())
+  providerUserId String    @map("provider_user_id")
   title          String
-  deleted        Boolean   @default(false)
-  deletedAt      DateTime? @map("deleted_at")
-  createdAt      DateTime  @default(now()) @map("created_at")
-  updateAt       DateTime  @default(now()) @map("update_at")
+  description    String?
   drawDate       DateTime? @map("draw_date")
   amountNumber   Int       @map("amount_number")
   priceNumber    Int       @map("price_number")
-  providerUserId String    @map("provider_user_id")
-  winningNumber  Int       @map("winning_number")
-  priceProduct   Int       @map("price_product")
-  description    String
+  winningNumber  Int?      @map("winning_number")
+  priceProduct   Int?      @map("price_product")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @map("update_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  ProviderUser ProviderUsers @relation(fields: [providerUserId], references: [id])
 
   @@map("raflles")
 }
