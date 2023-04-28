@@ -3,7 +3,7 @@ import {
   UpdateProviderUserUseCase,
   UpdateProviderUserUseCaseParams,
   UpdateProviderUserUseCaseResult
-} from '@/domain/usecases'
+} from '@/domain/usecases/provider-user'
 import { Inject, Injectable } from '@nestjs/common'
 
 @Injectable()

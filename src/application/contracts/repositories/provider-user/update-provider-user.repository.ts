@@ -1,5 +1,5 @@
 import { ProviderUserEntity } from '@/domain/entities'
-import { UpdateProviderUserUseCaseParams } from '@/domain/usecases'
+import { UpdateProviderUserUseCaseParams } from '@/domain/usecases/provider-user'
 
 export interface UpdateProviderUserRepository {
   updateProviderUser: (data: UpdateProviderUserRepositoryParams) => Promise<UpdateProviderUserRepositoryResult>

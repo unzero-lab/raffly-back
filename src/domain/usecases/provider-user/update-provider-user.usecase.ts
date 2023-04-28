@@ -1,5 +1,5 @@
-import { Gender } from '../enums'
-import { ProviderUserEntity } from '../entities'
+import { Gender } from '@/domain/enums'
+import { ProviderUserEntity } from '@/domain/entities'
 
 export interface UpdateProviderUserUseCase {
   execute(params: UpdateProviderUserUseCaseParams): Promise<UpdateProviderUserUseCaseResult>

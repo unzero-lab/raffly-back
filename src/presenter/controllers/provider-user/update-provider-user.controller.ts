@@ -1,4 +1,4 @@
-import { UpdateProviderUserUseCase } from '@/domain/usecases'
+import { UpdateProviderUserUseCase } from '@/domain/usecases/provider-user'
 import { Body, Controller, Inject, Put, Res } from '@nestjs/common'
 
 @Controller('update/provider-user')
