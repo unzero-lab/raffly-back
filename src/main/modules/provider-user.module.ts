@@ -27,6 +27,7 @@ import { AuthService } from '@/infra/external-services/auth'
     { provide: 'LoginProviderUserUseCase', useClass: LoginProviderUserService },
     { provide: 'RegisterProviderUserUseCase', useClass: RegisterProviderUserService },
     { provide: 'SaveTokenProviderUserRepository', useClass: ProviderUserDatabase },
+    { provide: 'UpdateProviderUserRepository', useClass: ProviderUserDatabase },
     PrismaService
   ]
 })
